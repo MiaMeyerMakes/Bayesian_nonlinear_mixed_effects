@@ -1,10 +1,15 @@
 # Bayesian study on tumour burden using functional uniform priors in nonlinear mixed-effects models
 
 **Author:** Mia Meyer
+
 **Institution:** Stellenbosch University, Department of Statistics and Actuarial Science
+
 **Degree:** Master of Commerce in Statistics and Data Science 
+
 **Year:** 2025
+
 **Supervisor(s):** Prof PJ Mostert and E Lesaffre
+
 
 ## Abstract
 
