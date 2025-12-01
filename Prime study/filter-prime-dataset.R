@@ -4,8 +4,6 @@ library(bayesplot)
 library(ggplot2)
 library(tidyverse)
 
-setwd("~/Desktop/Thesis/code/prime/AllProvidedFiles_309/PDS_DSA_20050203")
-
 #' ===============================================
 #' Import and Select
 #' ===============================================================
@@ -116,7 +114,6 @@ print(table(biom.df.filtered$ATRT))
 cat("------------------------------------------\n")
 
 # Save the filtered dataset
-setwd("~/Desktop/Thesis/code/prime")
 saveRDS(biom.df.filtered, file = "biom.df.filtered.rds")
 # Or CSV:
 # write.csv(biom.df.filtered, "biom.df.filtered.panitumumab_top45.csv", row.names = FALSE)

@@ -11,7 +11,6 @@ options(mc.cores = parallel::detectCores())
 
 #--------------------- process the data to stan format -------------------------
 
-setwd("~/Desktop/Thesis/code/prime")
 biom.df.filtered <- readRDS("biom.df.filtered.rds")
 
 dat_long <- biom.df.filtered %>%

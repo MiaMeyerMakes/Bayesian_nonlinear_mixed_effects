@@ -9,8 +9,6 @@ library(HDInterval)
 # ---
 # SCRIPT CONFIGURATION
 # ---
-# Set working directory and load data
-setwd("~/Desktop/Thesis/code/prime")
 
 # Load the data frame containing actual values and model predictions
 # This file should have BIOMVAL, pred_fup_stan, pred_unif_stan, pred_jeff_stan

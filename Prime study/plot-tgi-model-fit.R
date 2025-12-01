@@ -1,4 +1,4 @@
-setwd("~/Desktop/Thesis/code/prime")
+
 biom.df.filtered <- readRDS("biom.df.filtered.rds")
 biom.datf <- readRDS("biom.df.fitted.rds")
 
@@ -81,17 +81,6 @@ theta_colors <- gradient_factor_palette(plot_data$SUBJID,
                                         high = "#E69F00",
                                         space = "rgb")
 
-# ggplot(plot_data, aes(x = x, y = y, color = theta)) +
-#   geom_line(linewidth = 1) +
-#   labs(
-#     title = expression("Regression function for different" ~ theta),
-#     x = "x",
-#     y = expression("exp(-" ~ theta ~ "x)"),
-#     color = expression(theta)
-#   ) +
-#   scale_color_manual(values = theta_colors) +
-#   theme_minimal() +
-#   theme(legend.position = "bottom")
 
 ggplot(plot_data, aes(x = BIOMYR, y = BIOMVAL, group = SUBJID, color= SUBJID)) +
   geom_point(colour = "grey33", alpha = 0.35, size = 0.9) +
