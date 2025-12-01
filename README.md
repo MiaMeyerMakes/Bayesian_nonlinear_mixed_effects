@@ -34,7 +34,6 @@ The FUP has the theoretical advantages of being transformation invariant and sat
 │   ├── sensitivity_analysis_emax_v2.R
 │   ├── sensitivity_analysis_exponential.R
 │   └── sensitivity_analysis_power.R
-├── GitHub repo.Rproj
 ├── Literature review studies
 │   ├── Introduction_code copy.Rmd
 │   ├── Introduction_code.Rmd
