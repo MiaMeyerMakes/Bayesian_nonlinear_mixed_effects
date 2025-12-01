@@ -2,7 +2,6 @@ library(MASS)  # For multivariate normal
 library(RColorBrewer)
 library(HDInterval)
 
-setwd("~/Desktop/Thesis/code")
 # Set seed for reproducibility
 set.seed(123)
 
@@ -118,12 +117,12 @@ emax_metropolis_hastings <- function(dataset, num_iterations, burn_in, sigma_the
         theta_acceptance_counter = theta_acceptance_counter + 1
       }
       
-      # Step 4: Propose a new value for theta
-      sigma2_star <- exp(rnorm(1, log(sigma2_current), sigma_sigma))  # Proposal for log(sigma2)
+      # Step 4: Propose a new value for sigma
+      sigma2_star <-  rlnorm(0, 0.1)
       
       # Step 5: Compute acceptance ratio for sigma2
-      alpha_sigma_num <- log_posterior(theta2=theta_current, sig2=sigma2_star, x=x, y=y)
-      alpha_sigma_denom <- log_posterior(theta2=theta_current, sig2=sigma2_current, x=x, y=y)
+      alpha_sigma_num <- log_posterior(theta2=theta_current, sig2=sigma2_star, x=x, y=y) + log(dlnorm(sigma2_star,0, 0.1))
+      alpha_sigma_denom <- log_posterior(theta2=theta_current, sig2=sigma2_current, x=x, y=y)  + log(dlnorm(sigma2_current,0, 0.1))
       alpha_sigma <- alpha_sigma_num - alpha_sigma_denom
       
       # Step 6: Accept or reject sigma2
@@ -164,15 +163,6 @@ initial_sigma2 <- 1 # Initial value for sigma^2
 emax_n15_samples_list <- emax_metropolis_hastings(emax_data15, num_iterations, burn_in, sigma_theta, sigma_sigma, initial_theta, initial_sigma2)
 emax_n50_samples_list <- emax_metropolis_hastings(emax_data50, num_iterations, burn_in, sigma_theta, sigma_sigma, initial_theta, initial_sigma2)
 emax_n100_samples_list <- emax_metropolis_hastings(emax_data100, num_iterations, burn_in, sigma_theta, sigma_sigma, initial_theta, initial_sigma2)
-
-# # Save samples to prevent unnecessary re-runs
-# write.csv(emax_n15_samples_list[["theta_MH"]], "emax_theta_posterior_n15.csv", row.names = FALSE, col.names = FALSE)
-# write.csv(emax_n50_samples_list[["theta_MH"]], "emax_theta_posterior_n50.csv", row.names = FALSE, col.names = FALSE)
-# write.csv(emax_n100_samples_list[["theta_MH"]], "emax_theta_posterior_n100.csv", row.names = FALSE, col.names = FALSE)
-# 
-# n15_samplez <- read.csv("emax_theta_posterior_n15.csv", header = TRUE)
-# n50_samplez <- read.csv("emax_theta_posterior_n50.csv", header = TRUE)
-# n100_samplez <- read.csv("emax_theta_posterior_n100.csv", header = TRUE)
 
 # Function to calculate the coverage probabilities
 statistics_calc <- function(theta_true, samples, is_list = TRUE) {

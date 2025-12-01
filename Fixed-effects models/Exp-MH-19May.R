@@ -4,7 +4,6 @@ library(RColorBrewer)
 library(HDInterval)
 library(coda)
 
-setwd("~/Desktop/Thesis/code")
 # Set seed for reproducibility
 set.seed(123)
 
@@ -79,21 +78,24 @@ metropolis_hastings <- function(dataset, num_iterations, burn_in, sigma_theta,
     print(paste("Starting MH for sample", setnr))
     # Initialize the chain
     theta_current <- initial_theta
+    sigma2_current <- initial_sigma2
     
     # extract the simulated y from dataset
     y <- dataset[,setnr]
     
     theta_acceptance_counter <- 0
+    sigma_acceptance_counter <- 0
     # Metropolis-Hastings loop for that sample
     for (iteration in 1:num_iterations) {
+      
       # THETA SAMPLER
       
       # Step 1: Propose a new values for theta
       theta_star <- abs(rnorm(1, theta_current, sigma_theta))
       
       # Step 2: Compute acceptance ratio for theta
-      alpha_theta <- log_posterior(theta_star, sigma2, x, y)-
-        log_posterior(theta_current, sigma2, x, y)
+      alpha_theta <- log_posterior(theta_star, sigma2_current, x, y)-
+        log_posterior(theta_current, sigma2_current, x, y)
       
       # Step 3: Accept or reject theta
       u <- runif(1)
@@ -103,10 +105,29 @@ metropolis_hastings <- function(dataset, num_iterations, burn_in, sigma_theta,
         theta_acceptance_counter = theta_acceptance_counter + 1
       }
       
+      # Step 4: Propose a new value for sigma
+      sigma2_star <-  rlnorm(0, 0.5)
+      
+      # Step 5: Compute acceptance ratio for sigma2
+      alpha_sigma_num <- log_posterior(theta2=theta_current, sig2=sigma2_star, x=x, y=y) + log(dlnorm(sigma2_star,0, 0.5))
+      alpha_sigma_denom <- log_posterior(theta2=theta_current, sig2=sigma2_current, x=x, y=y)  + log(dlnorm(sigma2_current,0, 0.5))
+      alpha_sigma <- alpha_sigma_num - alpha_sigma_denom
+      
+      # Step 6: Accept or reject sigma2
+      u <- runif(1)
+      if (u < exp(alpha_sigma)) {
+        sigma2_current <- sigma2_star
+        sigma_acceptance_counter = sigma_acceptance_counter + 1
+      }
+      
+      # Store the values
+      samples_sigma2[iteration,setnr-1] <- sigma2_current
       samples_theta[iteration,setnr-1] <- theta_current
     }
     theta_acceptance <- append(theta_acceptance, 
                                sum(theta_acceptance_counter)/num_iterations)
+    sigma_acceptance <- append(sigma_acceptance, 
+                               sum(sigma_acceptance_counter)/num_iterations)
   }
   
   # Plot the first sample's chain for sense check (plot with burn in)

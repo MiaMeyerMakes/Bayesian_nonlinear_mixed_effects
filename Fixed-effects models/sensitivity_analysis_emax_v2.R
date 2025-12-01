@@ -1,6 +1,3 @@
-
-# setwd("\\\\sunrga.stb.sun.ac.za/home/ebw/22675760/Downloads/THESIS")
-
 library(pracma)
 library(ggplot2)
 library(tidyr)
@@ -27,101 +24,6 @@ gradient_factor_palette <- function(fct,
   }
   setNames(cols, lvls)
 }
-
-
-# prior_density <- function(theta, xupper) {
-#   A_val <- (1/(3*theta))-(3*xupper^2+3*xupper*theta + theta^2)/(3*(xupper+theta)^3)
-# 
-#   # compute and return the density
-#   density <-sqrt(A_val)
-#   return(density)
-# }
-# 
-# # Compute the normalizing constant over the valid range 0.004 < theta < 6
-# normalizing_constant <- integrate(prior_density, lower = 0.004001, upper = 6)$value
-# 
-# # Define the normalized prior
-# normalized_prior <- function(theta, xupper) {
-#   prior_density(theta, xupper) / normalizing_constant
-# }
-# 
-# # generate values for plotting
-# thetas <- seq(0.004001, 6, length.out =1000)
-# 
-# # compute the density values for different x support
-# prior_sim1 <- normalized_prior(thetas, 1)
-# prior_sim2 <- normalized_prior(thetas, 2)
-# prior_sim3 <- normalized_prior(thetas, 3)
-# prior_sim4 <- normalized_prior(thetas, 4)
-# 
-# plot_dat <- data.frame(thetas = thetas, 
-#                        prior_sim1 = prior_sim1,
-#                        prior_sim2 = prior_sim2,
-#                        prior_sim3 = prior_sim3,
-#                        prior_sim4 = prior_sim4
-#                        )
-# 
-# # plot the density function using ggplot2
-# ggplot(plot_dat, aes(x = thetas)) +
-#   geom_line(aes(y = prior_sim1), color = "maroon", linewidth = 1) +
-#   geom_line(aes(y = prior_sim2), color = "red", linewidth = 1) +
-#   geom_line(aes(y = prior_sim3), color = "coral", linewidth = 1) +
-#   geom_line(aes(y = prior_sim4), color = "goldenrod", linewidth = 1) +
-#   labs(
-#     title = "Function uniform prior sensitivity- hyperbolic emax-type function",
-#     x = expression(theta),
-#     y = expression(p(theta))
-#   ) +
-#   theme_minimal()
-# 
-# # First, reshape your data to long format
-# library(tidyr)
-# library(dplyr)
-# 
-# # Reshape data to long format (using dplyr::select explicitly)
-# plot_dat_long <- plot_dat %>%
-#   dplyr::select(thetas, prior_sim1, prior_sim2, prior_sim3, prior_sim4) %>%
-#   pivot_longer(
-#     cols = -thetas,
-#     names_to = "prior_type",
-#     values_to = "density"
-#   )
-# 
-# # Custom labels for the legend
-# prior_labels <- c(
-#   prior_sim1 = "1 support upper limit",
-#   prior_sim2 = "2 support upper limit",
-#   prior_sim3 = "3 support upper limit",
-#   prior_sim4 = "4 support upper limit"
-# )
-# 
-# # Create the plot with legend
-# ggplot(plot_dat_long, aes(x = thetas, y = density, color = prior_type)) +
-#   geom_line(linewidth = 1) +
-#   scale_color_manual(
-#     name = NULL,  # Remove legend title if desired
-#     values = c(
-#       "prior_sim1" = "maroon",
-#       "prior_sim2" = "red",
-#       "prior_sim3" = "coral",
-#       "prior_sim4" = "goldenrod"
-#     ),
-#     labels = prior_labels
-#   ) +
-#   labs(
-#     title = "Function uniform prior sensitivity- hyperbolic emax-type function",
-#     x = expression(theta),
-#     y = expression(p(theta))
-#   ) +
-#   theme_minimal()
-# 
-# prior_density_flex <- function(theta, xupper) {
-#   A_val <- (1/(3*theta))-(3*xupper^2+3*xupper*theta + theta^2)/(3*(xupper+theta)^3)
-#   
-#   # compute and return the density
-#   density <-sqrt(A_val)
-#   return(density)
-# }
 
 ################################### x in 0,4 #############################################
 
