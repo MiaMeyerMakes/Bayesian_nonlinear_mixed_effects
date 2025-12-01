@@ -9,8 +9,6 @@ library(dplyr)
 library(HDInterval)
 options(mc.cores = parallel::detectCores())
 
-setwd("~/Desktop/Thesis/code/tgi model/tgi-mixed-effects-MH/datasets")
-
 set.seed(993)
 
 # Define the Stan model with random effects
@@ -204,10 +202,6 @@ simulate_tgi_posterior_mixed <- function(nreps, nsubjects,
   colnames(theta_s_storage) <- paste(rep("sample", nreps), 1:nreps, sep='')
   filename = paste(format(Sys.time(), "%b-%d-%Hh%M"),"-DataV2-mixed-effects-shrink-posterior-sample-FUP-",nsubjects,".csv",sep="")
   write.csv(as.data.frame(theta_s_storage), filename, row.names = FALSE)
-  
-  # colnames(data_storage) <- paste(rep("dataset", nreps), 1:nreps, sep='')
-  # filename_data = paste("27may-mixed-effects-data-n",nsubjects,".csv",sep="")
-  # write.csv(as.data.frame(data_storage), filename_data, row.names = FALSE)
   
   return(list(theta_g = theta_g_storage, theta_s = theta_s_storage, rhats = rhat_storage, pointests = theta_pointest_storage, datasets = data_storage))
 }

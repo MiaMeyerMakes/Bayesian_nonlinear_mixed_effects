@@ -9,9 +9,6 @@ library(dplyr)
 library(HDInterval)
 options(mc.cores = parallel::detectCores())
 
-setwd("~/Desktop/Thesis/code/tgi model/tgi-mixed-effects-MH/datasets")
-
-
 # Define the Stan model with random effects
 tgi_unif_model_random_effects = "
   // where b_i's ~ N(0, sigma_b^2) and epsilon ~ N(0, sigma_eps^2)

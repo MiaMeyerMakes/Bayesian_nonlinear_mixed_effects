@@ -9,8 +9,6 @@ library(dplyr)
 library(HDInterval)
 options(mc.cores = parallel::detectCores())
 
-setwd("~/Desktop/Thesis/code/shrinkage model/mixed-effects")
-
 set.seed(12345)
 
 # Define the Stan model with random effects

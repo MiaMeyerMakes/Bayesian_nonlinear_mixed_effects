@@ -9,8 +9,6 @@ library(dplyr)
 library(HDInterval)
 options(mc.cores = parallel::detectCores())
 
-setwd("~/Desktop/Thesis/code/tgi model/tgi-mixed-effects-MH/datasets")
-
 set.seed(123456)
 
 # Define the Stan model with random effects
@@ -263,5 +261,3 @@ thetas_n100_jef <- simulate_tgi_jef_posterior_mixed(nreps=250,nsubjects = 100,
                                                     true_theta_g = exp(-2), sigma_b_g=0.1,
                                                     true_theta_s =  exp(0.83), sigma_b_s=0.7, 
                                                     sigma_eps=0.05, M = 7000, nchains =1)
-
-#-------------------------------------------------------------------------------

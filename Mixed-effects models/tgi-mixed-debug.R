@@ -2,8 +2,6 @@ library(ggplot2)
 library(tidyr)
 library(dplyr)
 
-setwd("/Users/miameyer/Desktop/Thesis/code/tgi model/tgi-mixed-effects-MH/tgi datasets")
-
 ###############################################################################
 numfiltered_tgi <- 0
 files_to_process <- c(
@@ -98,5 +96,4 @@ for (file_path in files_to_process) {
 }
 
 cat("--- Filtering complete for all files. ---\n")
-numfiltered_tgi
 numfiltered_tgi

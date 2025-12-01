@@ -5,9 +5,6 @@ library(ggplot2)
 library(dplyr)
 library(HDInterval)
 
-setwd("~/Desktop/Thesis/code/tgi model/tgi-mixed-effects-MH/tgi datasets")
-# setwd("/Volumes/MiaMeyerSSD/MASTERS/Thesis code backup/tgi model/tgi-mixed-effects-MH/datasets")
-
 theta_g_fup_15 = read.csv("Sep-18-01h15-DataV2-mixed-effects-growth-posterior-sample-FUP-15_filtered.csv", header = TRUE)
 theta_s_fup_15 = read.csv("Sep-18-01h15-DataV2-mixed-effects-shrink-posterior-sample-FUP-15_filtered.csv", header = TRUE)
 

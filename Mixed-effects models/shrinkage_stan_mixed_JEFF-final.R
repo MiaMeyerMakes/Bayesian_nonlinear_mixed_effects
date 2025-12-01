@@ -9,8 +9,6 @@ library(dplyr)
 library(HDInterval)
 options(mc.cores = parallel::detectCores())
 
-setwd("~/Desktop/Thesis/code/shrinkage model/mixed-effects")
-
 set.seed(12345)
 
 # Define the Stan model with random effects
@@ -208,5 +206,5 @@ simulate_theta_posterior_mixed_jeffreys <- function(nreps = 200,
 }
 
 thetas_jeffreys_n15 <- simulate_theta_posterior_mixed_jeffreys(nreps=200,nsubjects = 15, M=5000, sigma_b=0.3, sigma_eps = 0.03)
-# thetas_jeffreys_n50 <- simulate_theta_posterior_mixed_jeffreys(nreps=200,nsubjects = 50, M=5000, sigma_b=0.3, sigma_eps = 0.03)
-# thetas_jeffreys_n100 <- simulate_theta_posterior_mixed_jeffreys(nreps=100,nsubjects = 100, M=5000, sigma_b=0.3, sigma_eps = 0.03)
+thetas_jeffreys_n50 <- simulate_theta_posterior_mixed_jeffreys(nreps=200,nsubjects = 50, M=5000, sigma_b=0.3, sigma_eps = 0.03)
+thetas_jeffreys_n100 <- simulate_theta_posterior_mixed_jeffreys(nreps=100,nsubjects = 100, M=5000, sigma_b=0.3, sigma_eps = 0.03)
